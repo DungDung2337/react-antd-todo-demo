@@ -26,10 +26,13 @@ export const TodoList = ({
       />
     )}
     pagination={{
+      disabled: loading,
       position: 'bottom',
+      current: pagination._page,
       pageSize: pagination._limit,
       total: pagination._totalRows,
       onChange: onChangePage,
+      pageSizeOptions: [],
     }}
   />
 );
@@ -50,7 +53,7 @@ TodoList.defaultProps = {
   pagination: {
     _page: 1,
     _limit: 10,
-    _totalRow: 0,
+    _totalRows: 0,
   },
   onTodoRemoval: null,
   onTodoToggle: null,

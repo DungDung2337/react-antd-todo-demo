@@ -1,4 +1,4 @@
-@import '../../assets/styles/utils/media-queries.less';
+@import '../../assets/styles/utils/media-queries.scss';
 
 .list-item {
   display: flex;
@@ -16,7 +16,7 @@
     }
   }
 
-  @media @tablet {
+  @media tablet {
     .todo-item {
       .todo-tag {
         max-width: 500px;
@@ -24,7 +24,7 @@
     }
   }
 
-  @media @desktop {
+  @media desktop {
     .todo-item {
       .todo-tag {
         max-width: 100%;

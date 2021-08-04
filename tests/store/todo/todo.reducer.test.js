@@ -1,4 +1,7 @@
-import { removeTodo, toggleTodoStatus } from '../../../src/store/todo/actions';
+import {
+  removeTodoSuccess,
+  toggleTodoStatusSuccess,
+} from '../../../src/store/todo/actions';
 import {
   initialState,
   todoReducer,
@@ -26,29 +29,29 @@ describe('todo reducer', () => {
     let todoReducerState = todoReducer(initialState, createdTodoAction);
 
     expect(todoReducerState).toBeDefined();
-    expect(todoReducerState.todos).toHaveLength(1);
+    expect(todoReducerState.todos.data).toHaveLength(1);
 
     todoReducerState = todoReducer(
       initialState,
-      removeTodo(createdTodoAction.payload)
+      removeTodoSuccess(createdTodoAction.payload)
     );
 
-    expect(todoReducerState.todos).toHaveLength(0);
+    expect(todoReducerState.todos.data).toHaveLength(0);
   });
 
   it('should handle toggleTodoStatus', () => {
     const createTodoAction = createTestTodo({
-      id: '1234',
+      id: '440351',
     });
 
     const state = todoReducer(initialState, createTodoAction);
 
     const todoReducerState = todoReducer(
       state,
-      toggleTodoStatus(createTodoAction.payload)
+      toggleTodoStatusSuccess(createTodoAction.payload)
     );
 
-    expect(todoReducerState.todos[0].completed).toBe(
+    expect(todoReducerState.todos.data[0].completed).toBe(
       !createTodoAction.payload.completed
     );
   });

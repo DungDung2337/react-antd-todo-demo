@@ -4,8 +4,5 @@
     "target": "es6",
     "baseUrl": "./src"
   },
-  "include": ["src/**/*"],
-  "typeAcquisition": {
-    "exclude": ["dotenv"]
-  }
+  "include": ["src/**/*"]
 }

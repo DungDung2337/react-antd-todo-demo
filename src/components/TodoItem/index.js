@@ -3,7 +3,7 @@ import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import { TodoPropTypes } from 'prop-types/TodoPropType';
 
-import './styles.less';
+import './styles.scss';
 
 export const TodoItem = ({ todo, onTodoRemoval, onTodoToggle }) => {
   return (

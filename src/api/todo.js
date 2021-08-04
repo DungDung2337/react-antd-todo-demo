@@ -11,12 +11,12 @@ const todoApi = {
   },
 
   updateTodoItem(id, data) {
-    const urlWithId = url + id;
+    const urlWithId = `${url}/${id}`;
     return axiosClient.put(urlWithId, data);
   },
 
   deleteTodoItem(id) {
-    const urlWithId = url + id;
+    const urlWithId = `${url}/${id}`;
     return axiosClient.delete(urlWithId);
   },
 };

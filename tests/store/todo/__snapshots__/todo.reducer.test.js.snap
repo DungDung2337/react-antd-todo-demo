@@ -2,12 +2,22 @@
 
 exports[`todo reducer should handle addTodo 1`] = `
 Object {
-  "todos": Array [
-    Object {
-      "completed": true,
-      "id": "440351",
-      "name": "This is a test todo",
+  "errors": null,
+  "loading": false,
+  "loadingForm": false,
+  "todos": Object {
+    "data": Array [
+      Object {
+        "completed": true,
+        "id": "440351",
+        "name": "This is a test todo",
+      },
+    ],
+    "pagination": Object {
+      "_limit": 3,
+      "_page": 1,
+      "_totalRows": 1,
     },
-  ],
+  },
 }
 `;

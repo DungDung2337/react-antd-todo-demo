@@ -2,40 +2,42 @@ import { useEffect, useState } from 'react';
 import { Row, Col, Card, PageHeader } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  addTodo,
+  addTodoStart,
   loadTodoStart,
-  removeTodo,
-  toggleTodoStatus,
+  removeTodoStart,
+  toggleTodoStatusStart,
 } from 'store/todo/actions';
 import { AddTodoForm } from 'components/AddTodoForm';
 import { TodoList } from 'components/TodoList';
-import { message } from 'antd';
 
-import './styles.less';
+import './styles.scss';
 
 export const TodosContainer = () => {
   const [pagination, setPagination] = useState({
     _page: 1,
-    _limit: 10,
+    _limit: 3,
   });
-  const { todos, loading, error } = useSelector((state) => state.todo);
-  console.log(todos, loading, error);
-
+  const { todos, loading, loadingForm } = useSelector((state) => state.todo);
   const dispatch = useDispatch();
 
   const handleFormSubmit = (todo) => {
-    dispatch(addTodo(todo));
-    message.success('Todo added!');
+    const newTodo = {
+      ...todo,
+      completed: false,
+    };
+    dispatch(addTodoStart(newTodo));
   };
 
   const handleRemoveTodo = (todo) => {
-    dispatch(removeTodo(todo));
-    message.warn('Todo removed!');
+    const newPagination = todos.pagination;
+    if (newPagination._page > 1 && todos.data.length === 1) {
+      newPagination._page--;
+    }
+    dispatch(removeTodoStart({ todo, pagination: newPagination }));
   };
 
   const handleToggleTodoStatus = (todo) => {
-    dispatch(toggleTodoStatus(todo));
-    message.info('Todo state updated!');
+    dispatch(toggleTodoStatusStart(todo));
   };
 
   const handleChangePage = (page) => {
@@ -81,7 +83,10 @@ export const TodosContainer = () => {
         xl={{ span: 18 }}
       >
         <Card title="Create a new todo">
-          <AddTodoForm onFormSubmit={handleFormSubmit} />
+          <AddTodoForm
+            onFormSubmit={handleFormSubmit}
+            loadingForm={loadingForm}
+          />
         </Card>
       </Col>
 

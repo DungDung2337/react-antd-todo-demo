@@ -2,9 +2,9 @@ import React from 'react';
 import { Form, Row, Col, Button, Input } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
 import PropTypes from 'prop-types';
-import './styles.less';
+import './styles.scss';
 
-export const AddTodoForm = ({ onFormSubmit }) => {
+export const AddTodoForm = ({ onFormSubmit, loadingForm }) => {
   const [form] = Form.useForm();
 
   const onFinish = () => {
@@ -28,11 +28,14 @@ export const AddTodoForm = ({ onFormSubmit }) => {
             name={'name'}
             rules={[{ required: true, message: 'This field is required' }]}
           >
-            <Input placeholder="What needs to be done?" />
+            <Input
+              placeholder="What needs to be done?"
+              disabled={loadingForm}
+            />
           </Form.Item>
         </Col>
         <Col xs={24} sm={24} md={7} lg={5} xl={4}>
-          <Button type="primary" htmlType="submit" block>
+          <Button type="primary" htmlType="submit" block loading={loadingForm}>
             <PlusCircleFilled />
             Add todo
           </Button>
@@ -43,9 +46,11 @@ export const AddTodoForm = ({ onFormSubmit }) => {
 };
 
 AddTodoForm.propTypes = {
+  loadingForm: PropTypes.bool,
   onFormSubmit: PropTypes.func,
 };
 
 AddTodoForm.defaultProps = {
+  loadingForm: false,
   onFormSubmit: null,
 };
