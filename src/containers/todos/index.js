@@ -16,7 +16,7 @@ export const TodosContainer = () => {
   const { todos, loading, loadingForm } = useSelector((state) => state.todo);
   const [pagination, setPagination] = useState({
     _page: 1,
-    _limit: 3,
+    _limit: 10,
   });
   const dispatch = useDispatch();
 

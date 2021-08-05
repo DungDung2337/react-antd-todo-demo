@@ -7,7 +7,7 @@ export const initialState = {
     data: [],
     pagination: {
       _page: 1,
-      _limit: 3,
+      _limit: 10,
       _totalRows: 0,
     },
   },
