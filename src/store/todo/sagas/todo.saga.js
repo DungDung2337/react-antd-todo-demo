@@ -26,7 +26,7 @@ function* onLoadTodoStartAsync(action) {
     yield put(loadTodoSuccess(response));
   } catch (error) {
     yield put(loadTodoFail(error));
-    yield message.error('Something went wrong!');
+    yield call(message.error('Something went wrong!'));
   }
 }
 
@@ -62,7 +62,7 @@ function* onRemoveTodoAsync(action) {
     yield call(getTodoList, payload.pagination);
   } catch (error) {
     yield put(removeTodoFail(error));
-    yield message.error('Something went wrong!');
+    yield call(message.error('Something went wrong!'));
   }
 }
 
@@ -89,6 +89,6 @@ function* onChangeStatusTodoAsync(action) {
     yield call(message.success('Todo state updated!'));
   } catch (error) {
     yield put(toggleTodoStatusFail(error));
-    yield message.error('Something went wrong!');
+    yield call(message.error('Something went wrong!'));
   }
 }

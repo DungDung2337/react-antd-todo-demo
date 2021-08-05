@@ -1,8 +1,6 @@
 import { List } from 'antd';
 import { TodoItem } from 'components/TodoItem';
 import PropTypes from 'prop-types';
-import { PaginationPropTypes } from 'prop-types/Pagination';
-import { TodoPropTypes } from 'prop-types/TodoPropType';
 
 export const TodoList = ({
   todos,
@@ -38,10 +36,20 @@ export const TodoList = ({
 );
 
 TodoList.propTypes = {
-  todos: PropTypes.arrayOf(TodoPropTypes),
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      name: PropTypes.string,
+      completed: PropTypes.bool,
+    })
+  ),
   loading: PropTypes.bool,
   totalRow: PropTypes.number,
-  pagination: PaginationPropTypes,
+  pagination: PropTypes.shape({
+    _page: PropTypes.number,
+    _limit: PropTypes.number,
+    _totalRows: PropTypes.number,
+  }),
   onTodoRemoval: PropTypes.func,
   onTodoToggle: PropTypes.func,
 };

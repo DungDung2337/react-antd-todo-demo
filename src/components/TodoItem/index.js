@@ -1,7 +1,6 @@
 import { Tooltip, Tag, List, Button, Popconfirm, Switch } from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
-import { TodoPropTypes } from 'prop-types/TodoPropType';
 
 import './styles.scss';
 
@@ -43,7 +42,11 @@ export const TodoItem = ({ todo, onTodoRemoval, onTodoToggle }) => {
 };
 
 TodoItem.propTypes = {
-  todo: TodoPropTypes,
+  todo: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    name: PropTypes.string,
+    completed: PropTypes.bool,
+  }),
   onTodoRemoval: PropTypes.func,
   onTodoToggle: PropTypes.func,
 };

@@ -13,11 +13,11 @@ import { TodoList } from 'components/TodoList';
 import './styles.scss';
 
 export const TodosContainer = () => {
+  const { todos, loading, loadingForm } = useSelector((state) => state.todo);
   const [pagination, setPagination] = useState({
     _page: 1,
     _limit: 3,
   });
-  const { todos, loading, loadingForm } = useSelector((state) => state.todo);
   const dispatch = useDispatch();
 
   const handleFormSubmit = (todo) => {
@@ -29,7 +29,10 @@ export const TodosContainer = () => {
   };
 
   const handleRemoveTodo = (todo) => {
-    const newPagination = todos.pagination;
+    const newPagination = {
+      _page: todos.pagination._page,
+      _limit: todos.pagination._limit,
+    };
     if (newPagination._page > 1 && todos.data.length === 1) {
       newPagination._page--;
     }
@@ -47,13 +50,12 @@ export const TodosContainer = () => {
     });
   };
 
-  const fetchTodo = () => {
-    dispatch(loadTodoStart(pagination));
-  };
-
   useEffect(() => {
+    function fetchTodo() {
+      dispatch(loadTodoStart(pagination));
+    }
     fetchTodo();
-  }, [pagination]);
+  }, [dispatch, pagination]);
 
   return (
     <Row

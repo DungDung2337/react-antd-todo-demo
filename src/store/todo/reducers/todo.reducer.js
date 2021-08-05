@@ -56,9 +56,7 @@ export const todoReducer = (state = initialState, action) => {
             pagination._page === totalPages && data.length < pagination._limit
               ? [...data, action.payload]
               : [...data],
-          pagination: {
-            ...pagination,
-          },
+          pagination,
         },
         loadingForm: false,
       });
@@ -82,9 +80,7 @@ export const todoReducer = (state = initialState, action) => {
               ? { ...todo, completed: !todo.completed }
               : todo
           ),
-          pagination: {
-            ...pagination,
-          },
+          pagination,
         },
         loading: false,
       });
